@@ -1,4 +1,5 @@
 import React from 'react'
+import SpaceShowcase from '@/components/SpaceShowcase'
 import CardsCarousel  from '@/app/CardsCarousel/page'
 import CanvasReveal  from '@/app/CanvasReveal/CanvasReveal'
 import { UseCasesCarousel } from '@/components/UseCasesCarousel'
@@ -12,17 +13,16 @@ import Footer from "@/sections/Footer"
 export default function Home() {
   return (
     <main className="flex flex-col min-h-screen">
-      
-      
+      <SpaceShowcase />
       <CanvasReveal />
-      <CardsCarousel />
+      {/* <CardsCarousel /> */}
       <section id="gallery" className="bg-white">
         <Gallery />
       </section>
       <section id="use-cases" className="overflow-hidden">
         <UseCasesCarousel />
       </section>
-      <Card />
+      {/* <Card /> */}
       <section id="news" className="bg-white">
         <News />
         <WorldMap />
@@ -31,3 +31,4 @@ export default function Home() {
     </main>
   )
 }
+
