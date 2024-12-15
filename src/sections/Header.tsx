@@ -1,73 +1,48 @@
-"use client";
+'use client'
 
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { Menu, X, Sun, Globe } from "lucide-react";
-import { Link as ScrollLink } from 'react-scroll';
-import Logo from "@/assets/images/logo.png";
+import React from "react"
+import Image from "next/image"
+import Link from "next/link"
+import { HoverBorderGradient } from "@/components/ui/hover-border-gradient"
 
-const navItems = [
-  { href: "features", label: "Features" },
-  { href: "how-it-works", label: "How It Works" },
-  { href: "ir", label: "Investors" },
-  { href: "careers", label: "Careers" },
-];
-
-export const Header: React.FC = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
+export default function Header() {
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-black bg-opacity-85 backdrop-blur-sm" : "bg-transparent"
-      }`}
-    >
-      <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center py-3">
-          <Link href="/" className="flex items-center space-x-2">
-            <Image src={Logo} alt="Adler Logo" width={120} height={40} />
-          </Link>
-        
-
-          
+    <header className="bg-black shadow-sm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          <div className="flex-shrink-0">
+            <Link href="/">
+              <Image
+                src="/images/logo.png"
+                alt="Adler 3D Logo"
+                width={120}
+                height={40}
+                priority
+              />
+            </Link>
+          </div>
+          <nav className="hidden md:flex space-x-8">
+            <Link href="/about" className="text-gray-300 hover:text-white">About</Link>
+            <Link href="/services" className="text-gray-300 hover:text-white">Services</Link>
+            <Link href="/contact" className="text-gray-300 hover:text-white">Contact</Link>
+          </nav>
+          <div className="flex items-center">
+            <HoverBorderGradient
+              containerClassName="rounded-full hidden md:block"
+              className="bg-transparent text-white px-4 py-2 text-sm font-medium"
+            >
+              Get Started
+            </HoverBorderGradient>
+            <button className="md:hidden p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+              <span className="sr-only">Open menu</span>
+              <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
-      {isMenuOpen && (
-        <div className="md:hidden bg-black bg-opacity-95 backdrop-blur-sm">
-          <nav className="flex flex-col space-y-4 p-4">
-            {navItems.map((item) => (
-              <ScrollLink
-                key={item.label}
-                to={item.href}
-                smooth={true}
-                duration={500}
-                className="text-lg font-medium text-white hover:text-[#FF69B4] transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.label}
-              </ScrollLink>
-            ))}
-          </nav>
-        </div>
-      )}
     </header>
-  );
-};
+  )
+}
+

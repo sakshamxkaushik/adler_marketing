@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { Header } from "@/sections/Header";
+import  Header  from "@/sections/Header";
 import Footer from "@/sections/Footer";
 import { Button } from "@/components/ui/button";
 
