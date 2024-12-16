@@ -7,7 +7,7 @@ const categories = [
   "Dream Home",
   "Memorial Spaces",
   "Influencer",
-  "Winter & APT"
+  "APT & Winter"
 ]
 
 const spaces = [
