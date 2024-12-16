@@ -23,23 +23,23 @@ const spaces = [
   { id: 11, name: "hellfigure's celebrity space", category: "Influencer", image: "/images/spaces/645230894872884257.png", url: "https://www.adler3d.com/posts/645230894872884257" },
   { id: 12, name: "ray007's celebrity space", category: "Influencer", image: "/images/spaces/644237526428644144.png", url: "https://www.adler3d.com/posts/644237526428644144" },
   { id: 13, name: "King's Space", category: "Influencer", image: "/images/spaces/643790918784217602.png", url: "https://www.adler3d.com/posts/643790918784217602" },
-  { id: 32, name: "Winter Evening", category: "Winter & APT", image: "/images/spaces/651435948042713234.png", url: "https://www.adler3d.com/posts/651435948042713234" },
-  { id: 33, name: "Royal", category: "Winter & APT", image: "/images/spaces/651776602266499239.png", url: "https://www.adler3d.com/posts/651776602266499239" },
-  { id: 40, name: "APT Inspired 3d space", category: "Winter & APT", image: "/images/spaces/653915616025082201.jpeg", url: "https://www.adler3d.com/posts/653915616025082201" },
-  { id: 41, name: "APT Challenge", category: "Winter & APT", image: "/images/spaces/653943445123070307.png", url: "https://www.adler3d.com/posts/653943445123070307" }
+  { id: 40, name: "APT Inspired 3d space", category: "APT & Winter", image: "/images/spaces/653915616025082201.jpeg", url: "https://www.adler3d.com/posts/653915616025082201" },
+  { id: 41, name: "APT Challenge", category: "APT & Winter", image: "/images/spaces/653943445123070307.png", url: "https://www.adler3d.com/posts/653943445123070307" },
+  { id: 32, name: "Winter Evening", category: "APT & Winter", image: "/images/spaces/651435948042713234.png", url: "https://www.adler3d.com/posts/651435948042713234" },
+  { id: 33, name: "Royal", category: "APT & Winter", image: "/images/spaces/651776602266499239.png", url: "https://www.adler3d.com/posts/651776602266499239" },
 ]
 
 const templates = [
   { name: "Museum", image: "/images/templates/museum.png" },
   { name: "Party Room", image: "/images/templates/party-room.png" },
-  { name: "Home", image: "/images/templates/home.png" },
+  { name: "Home", image: "/images/templates/home.png" },  
   { name: "Blank", image: "/images/templates/blank.png" }
 ]
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-black text-white p-8 font-ubuntu">
-      <h1 className="text-4xl font-bold mb-12 text-center">Explore and Create your own 3D World</h1>
+      <h1 className="text-4xl font-bold mb-12 text-center">Explore and Create your own 3D World</h1>  
       
       {/* Categories and Spaces */}
       {categories.map((category) => (
