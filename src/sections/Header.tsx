@@ -22,16 +22,22 @@ export default function Header() {
             </Link>
           </div>
         
-          <div className="m-40 flex justify-center text-center">
-            <HoverBorderGradient
-              containerClassName="rounded-full hidden md:block"
-              className="bg-transparent text-white px-4 py-2 text-sm font-medium"
+          <div className="flex items-center">
+            <Link
+              href="https://www.adler3d.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:block"
             >
-              Get Started
-            </HoverBorderGradient>
-            <button className="md:hidden p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-
-
+              <HoverBorderGradient
+                containerClassName="rounded-full overflow-hidden"
+                className="bg-gradient-to-r from-pink-600 to-black-500 text-white px-6 py-2 text-sm font-medium transition-all duration-300 ease-in-out transform hover:scale-105"
+              >
+                Get Started
+              </HoverBorderGradient>
+            </Link>
+            <button className="md:hidden p-2 rounded-md text-gray-400 hover:text-white hover:bg-black-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+              <span className="sr-only">Open main menu</span>
               <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
