@@ -48,7 +48,7 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {spaces
               .filter(space => space.category === category)
-              .slice(0, category === "Winter & APT" ? 4 : 4)
+              .slice(0, category === "APT & Winter" ? 4 : 4)
               .map((space) => (
                 <Link 
                   href={space.url} 
