@@ -3,12 +3,12 @@ import Header from "@/sections/Header"
 import SpaceShowcase from '@/components/SpaceShowcase'
 import { UseCasesCarousel } from '@/components/UseCasesCarousel'
 import Footer from "@/sections/Footer"
-
+import MacOSCursor from '@/components/SimpleCursor'
 
 export default function Home() {
   return (
     <main className="flex flex-col min-h-screen relative">
-      
+      <MacOSCursor />
       <div className="relative z-10 flex flex-col min-h-screen">
         <Header />
         <SpaceShowcase />
@@ -16,11 +16,12 @@ export default function Home() {
           <UseCasesCarousel />
         </section>
         
-          {/* <News /> */}
-          {/* <WorldMap /> */}
-    
+        {/* <News /> */}
+        {/* <WorldMap /> */}
+  
         <Footer />
       </div>
     </main>
   )
 }
+

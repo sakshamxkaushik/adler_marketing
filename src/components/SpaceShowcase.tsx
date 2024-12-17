@@ -2,6 +2,8 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
+import SimpleCursor from '../components/SimpleCursor'
 
 const categories = [
   "Dream Home",
@@ -31,7 +33,7 @@ const spaces = [
 
 const templates = [
   { name: "Museum", image: "/images/templates/museum.png" },
-  { name: "Party Room", image: "/images/templates/party-room.png" },
+  { name: "Party Room", image: "/images/templates/party.png" },
   { name: "Home", image: "/images/templates/home.png" },  
   { name: "Blank", image: "/images/templates/blank.png" }
 ]
@@ -39,49 +41,86 @@ const templates = [
 export default function Home() {
   return (
     <main className="min-h-screen bg-black text-white p-8 font-ubuntu">
-      <h1 className="text-4xl font-bold mb-12 text-center">Explore and Create your own 3D World</h1>  
+      <SimpleCursor />
+      <motion.h1 
+        className="text-4xl font-bold mb-12 text-center"
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        Explore and Create your own 3D World
+      </motion.h1>  
       
       {/* Categories and Spaces */}
-      {categories.map((category) => (
-        <div key={category} className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4">{category}</h2>
+      {categories.map((category, categoryIndex) => (
+        <motion.div 
+          key={category} 
+          className="mb-12"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
+        >
+          <h2 className="text-2xl font-semibold mb-4">
+            {category}
+          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {spaces
               .filter(space => space.category === category)
               .slice(0, category === "APT & Winter" ? 4 : 4)
-              .map((space) => (
-                <Link 
-                  href={space.url} 
-                  key={space.id} 
-                  className="block" 
-                  target="_blank"
-                  rel="noopener noreferrer"
+              .map((space, index) => (
+                <motion.div
+                  key={space.id}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  whileHover={{ scale: 1.05 }}
                 >
-                  <div className="border border-white rounded-lg overflow-hidden transition-all duration-300 ease-in-out hover:shadow-[0_0_10px_rgba(255,255,255,0.5)]">
-                    <div className="relative h-48">
-                      <Image
-                        src={space.image}
-                        alt={space.name}
-                        fill
-                        className="object-cover"
-                      />
+                  <Link 
+                    href={space.url} 
+                    className="block" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <div className="border border-white rounded-lg overflow-hidden transition-all duration-300 ease-in-out hover:shadow-[0_0_20px_rgba(252,45,124,0.5)]">
+                      <div className="relative h-48">
+                        <Image
+                          src={space.image}
+                          alt={space.name}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                      <div className="p-2">
+                        <h3 className="text-sm font-semibold truncate">{space.name}</h3>
+                      </div>
                     </div>
-                    <div className="p-2">
-                      <h3 className="text-sm font-semibold truncate">{space.name}</h3>
-                    </div>
-                  </div>
-                </Link>
+                  </Link>
+                </motion.div>
               ))}
           </div>
-        </div>
+        </motion.div>
       ))}
 
       {/* Templates */}
-      <div className="mt-16">
-        <h2 className="text-2xl font-semibold mb-4">Create Your Own Space</h2>
+      <motion.div 
+        className="mt-16"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.5 }}
+      >
+        <h2 className="text-2xl font-semibold mb-4">
+          Create Your Own Space
+        </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {templates.map((template, index) => (
-            <div key={index} className="flex flex-col items-center">
+            <motion.div 
+              key={index} 
+              className="flex flex-col items-center"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3, delay: index * 0.1 + 0.6 }}
+              whileHover={{ scale: 1.05 }}
+            >
               <div className="relative w-full h-48 mb-4 border border-white rounded-lg overflow-hidden">
                 <Image
                   src={template.image}
@@ -94,14 +133,14 @@ export default function Home() {
                 href="https://www.adler3d.com/studio"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block px-4 py-2 bg-white text-black rounded-full text-sm font-semibold transition-all duration-300 ease-in-out hover:bg-gray-200"
+                className="inline-block px-4 py-2 bg-white text-black rounded-full text-sm font-semibold transition-all duration-300 ease-in-out hover:bg-gray-200 hover:text-[#FC2D7C]"
               >
                 Create your space using {template.name} Template
               </Link>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </main>
   )
 }
