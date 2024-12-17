@@ -13,14 +13,14 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
           <div>
-            <nav className="mb-4">
+            {/* <nav className="mb-4">
               <ul className="flex space-x-6 text-lg">
-                <li><a href="/hrpage" className="hover:text-gray-300">Career</a></li>
-                <li><a href="/ir" className="hover:text-gray-300">IR</a></li>
-                <li><a href="/contact" className="hover:text-gray-300">Contact</a></li>
+                 <li><a href="/hrpage" className="hover:text-gray-300">Career</a></li> 
+                 <li><a href="/ir" className="hover:text-gray-300">IR</a></li> 
+                 <li><a href="/contact" className="hover:text-gray-300">Contact</a></li>
               </ul>
-            </nav>
-            <address className="not-italic mb-2 text-sm text-gray-300">
+            </nav> */}
+            {/* <address className="not-italic mb-2 text-sm text-gray-300">
               Address : 2nd floor, 25, 224-gil Nambusunhwan-ro, Gwanak-gu, Seoul<br />
               Addr. Seoul, Korea | Biz License 772-88-02469
             </address>
@@ -31,8 +31,8 @@ export default function Footer() {
               </svg>
               English
             </div>
-          </div>
-          <div>
+          </div> */}
+          {/* <div>
             <h2 className="text-2xl font-semibold mb-4 text-white">
               Subscribe to our newsletter to get the latest News<br />
               and resources from <span className="text-pink-400">Adler</span>
@@ -46,8 +46,8 @@ export default function Footer() {
               <Button type="submit" className="bg-pink-500 hover:bg-pink-600 text-white rounded-full">
                 Subscribe
               </Button>
-            </form>
-          </div>
+            </form> */}
+          </div> 
         </div>
         <div className="border-t border-gray-700 pt-8 flex justify-between items-center">
           <div className="w-1/3">
