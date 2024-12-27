@@ -63,7 +63,7 @@ export default function Home() {
           <h2 className="text-2xl font-semibold mb-4">
             {category}
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
             {spaces
               .filter(space => space.category === category)
               .slice(0, category === "APT & Winter" ? 4 : 4)
@@ -74,6 +74,7 @@ export default function Home() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
                   whileHover={{ scale: 1.05 }}
+                  className="w-full max-w-[250px]"
                 >
                   <Link 
                     href={space.url} 
@@ -82,7 +83,7 @@ export default function Home() {
                     rel="noopener noreferrer"
                   >
                     <div className="border border-white rounded-lg overflow-hidden transition-all duration-300 ease-in-out hover:shadow-[0_0_20px_rgba(252,45,124,0.5)]">
-                      <div className="relative h-48">
+                      <div className="relative w-full" style={{ paddingTop: '160%' }}>
                         <Image
                           src={space.image}
                           alt={space.name}
@@ -111,17 +112,17 @@ export default function Home() {
         <h2 className="text-2xl font-semibold mb-4">
           Create Your Own Space
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center">
           {templates.map((template, index) => (
             <motion.div 
               key={index} 
-              className="flex flex-col items-center"
+              className="flex flex-col items-center w-full max-w-[250px]"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, delay: index * 0.1 + 0.6 }}
               whileHover={{ scale: 1.05 }}
             >
-              <div className="relative w-full h-48 mb-4 border border-white rounded-lg overflow-hidden">
+              <div className="relative w-full mb-4 border border-white rounded-lg overflow-hidden" style={{ paddingTop: '160%' }}>
                 <Image
                   src={template.image}
                   alt={template.name}
@@ -133,7 +134,7 @@ export default function Home() {
                 href="https://www.adler3d.com/studio"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block px-4 py-2 bg-white text-black rounded-full text-sm font-semibold transition-all duration-300 ease-in-out hover:bg-gray-200 hover:text-[#FC2D7C]"
+                className="inline-block px-4 py-2 bg-white text-black rounded-full text-sm font-semibold transition-all duration-300 ease-in-out hover:bg-gray-200 hover:text-[#FC2D7C] text-center"
               >
                 Create your space using {template.name} Template
               </Link>
