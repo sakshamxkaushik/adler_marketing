@@ -73,7 +73,7 @@ export default function Home() {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.5, zIndex: 10 }}
                   className="w-full max-w-[250px]"
                 >
                   <Link 
@@ -82,7 +82,7 @@ export default function Home() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <div className="border border-white rounded-lg overflow-hidden transition-all duration-300 ease-in-out hover:shadow-[0_0_20px_rgba(252,45,124,0.5)]">
+                    <div className="rounded-xl overflow-hidden transition-all duration-300 ease-in-out hover:shadow-[0_0_20px_rgba(252,45,124,0.5)] transform">
                       <div className="relative w-full" style={{ paddingTop: '160%' }}>
                         <Image
                           src={space.image}
@@ -90,9 +90,9 @@ export default function Home() {
                           fill
                           className="object-cover"
                         />
-                      </div>
-                      <div className="p-2">
-                        <h3 className="text-sm font-semibold truncate">{space.name}</h3>
+                        <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-2">
+                          <h3 className="text-sm font-semibold truncate text-white">{space.name}</h3>
+                        </div>
                       </div>
                     </div>
                   </Link>
@@ -120,15 +120,18 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, delay: index * 0.1 + 0.6 }}
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.5, zIndex: 10 }}
             >
-              <div className="relative w-full mb-4 border border-white rounded-lg overflow-hidden" style={{ paddingTop: '160%' }}>
+              <div className="relative w-full mb-4 rounded-xl overflow-hidden transform" style={{ paddingTop: '160%' }}>
                 <Image
                   src={template.image}
                   alt={template.name}
                   fill
                   className="object-cover"
                 />
+                <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-2">
+                  <h3 className="text-sm font-semibold truncate text-white">{template.name}</h3>
+                </div>
               </div>
               <Link 
                 href="https://www.adler3d.com/studio"
