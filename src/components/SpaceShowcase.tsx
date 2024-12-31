@@ -3,13 +3,15 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { useState } from 'react'
 import SimpleCursor from '../components/SimpleCursor'
 
 const categories = [
-  "Dream Home",
-  "Memorial Spaces",
-  "Influencer",
-  "APT & Winter"
+  { name: "All Spaces", color: "from-gray-500 to-gray-700" },
+  { name: "Dream Home", color: "from-blue-500 to-purple-500" },
+  { name: "Memorial Spaces", color: "from-green-500 to-teal-500" },
+  { name: "Influencer", color: "from-yellow-500 to-orange-500" },
+  { name: "APT & Winter", color: "from-red-500 to-pink-500" }
 ]
 
 const spaces = [
@@ -39,6 +41,8 @@ const templates = [
 ]
 
 export default function Home() {
+  const [activeCategory, setActiveCategory] = useState(categories[0].name)
+
   return (
     <main className="min-h-screen bg-black text-white p-8 font-ubuntu">
       <SimpleCursor />
@@ -51,56 +55,70 @@ export default function Home() {
         Explore and Create your own 3D World
       </motion.h1>  
       
-      {/* Categories and Spaces */}
-      {categories.map((category, categoryIndex) => (
-        <motion.div 
-          key={category} 
-          className="mb-12"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
-        >
-          <h2 className="text-2xl font-semibold mb-4">
-            {category}
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
-            {spaces
-              .filter(space => space.category === category)
-              .slice(0, category === "APT & Winter" ? 4 : 4)
-              .map((space, index) => (
-                <motion.div
-                  key={space.id}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  whileHover={{ scale: 1.5, zIndex: 10 }}
-                  className="w-full max-w-[250px]"
-                >
-                  <Link 
-                    href={space.url} 
-                    className="block" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <div className="rounded-xl overflow-hidden transition-all duration-300 ease-in-out hover:shadow-[0_0_20px_rgba(252,45,124,0.5)] transform">
-                      <div className="relative w-full" style={{ paddingTop: '160%' }}>
-                        <Image
-                          src={space.image}
-                          alt={space.name}
-                          fill
-                          className="object-cover"
-                        />
-                        <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-2">
-                          <h3 className="text-sm font-semibold truncate text-white">{space.name}</h3>
-                        </div>
+      {/* Category Tabs */}
+      <div className="flex flex-wrap justify-center mb-8">
+        {categories.map((category, index) => (
+          <motion.button
+            key={category.name}
+            className={`px-4 py-2 m-2 rounded-full text-lg font-semibold transition-all duration-300 ${
+              activeCategory === category.name ? `bg-gradient-to-r ${category.color} text-white` : 'bg-gray-800 text-gray-300'
+            }`}
+            onClick={() => setActiveCategory(category.name)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: index * 0.1 }}
+          >
+            {category.name}
+          </motion.button>
+        ))}
+      </div>
+
+      {/* Spaces Grid */}
+      <motion.div 
+        className="grid grid-cols-1 sm:grid-cols-2 gap-8 justify-items-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        {spaces
+          .filter(space => activeCategory === "All Spaces" || space.category === activeCategory)
+          .map((space, index) => (
+            <motion.div
+              key={space.id}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3, delay: index * 0.1 }}
+              whileHover={{ scale: 1.5, zIndex: 10 }}
+              className="w-full"
+              style={{ maxWidth: '500px' }}
+            >
+              <Link 
+                href={space.url} 
+                className="block" 
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="rounded-xl overflow-hidden transition-all duration-300 ease-in-out hover:shadow-[0_0_20px_rgba(252,45,124,0.5)] transform">
+                  <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
+                    <Image
+                      src={space.image}
+                      alt={space.name}
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent">
+                      <div className="absolute bottom-0 left-0 right-0 p-4">
+                        <h3 className="text-sm font-semibold text-white">{space.name}</h3>
                       </div>
                     </div>
-                  </Link>
-                </motion.div>
-              ))}
-          </div>
-        </motion.div>
-      ))}
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+      </motion.div>
 
       {/* Templates */}
       <motion.div 
@@ -109,28 +127,36 @@ export default function Home() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.5 }}
       >
-        <h2 className="text-2xl font-semibold mb-4">
+        <motion.h2 
+          className="text-3xl font-bold mb-8 text-center"
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+        >
           Create Your Own Space
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center">
+        </motion.h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 justify-items-center">
           {templates.map((template, index) => (
             <motion.div 
               key={index} 
-              className="flex flex-col items-center w-full max-w-[250px]"
+              className="flex flex-col items-center w-full"
+              style={{ maxWidth: '250px' }}
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, delay: index * 0.1 + 0.6 }}
               whileHover={{ scale: 1.5, zIndex: 10 }}
             >
-              <div className="relative w-full mb-4 rounded-xl overflow-hidden transform" style={{ paddingTop: '160%' }}>
+              <div className="relative w-full mb-4 rounded-xl overflow-hidden transform" style={{ paddingTop: '100%' }}>
                 <Image
                   src={template.image}
                   alt={template.name}
                   fill
                   className="object-cover"
                 />
-                <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-2">
-                  <h3 className="text-sm font-semibold truncate text-white">{template.name}</h3>
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent">
+                  <div className="absolute bottom-0 left-0 right-0 p-4">
+                    <h3 className="text-sm font-semibold text-white">{template.name}</h3>
+                  </div>
                 </div>
               </div>
               <Link 
@@ -139,7 +165,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="inline-block px-4 py-2 bg-white text-black rounded-full text-sm font-semibold transition-all duration-300 ease-in-out hover:bg-gray-200 hover:text-[#FC2D7C] text-center"
               >
-                Create your space using {template.name} Template
+                Create using {template.name}
               </Link>
             </motion.div>
           ))}
